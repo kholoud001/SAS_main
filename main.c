@@ -85,6 +85,28 @@ void ToDoSort(ToDo T[], int n){
   }
 }
 
+//Sorting by deadline
+void SortByDeadline(ToDo T[], int n) {
+    int i, j;
+    ToDo temp;
+  
+    for (i = 0; i < n - 1; i++) {
+        for (j = 0; j < n - i - 1; j++) {
+            // Compare deadlines using mktime to convert struct tm to time_t
+            time_t deadlineTime1 = mktime(&T[j].deadline);
+            time_t deadlineTime2 = mktime(&T[j + 1].deadline);
+
+            if (deadlineTime1 > deadlineTime2) {
+                // Swap the elements
+                temp = T[j];
+                T[j] = T[j + 1];
+                T[j + 1] = temp;
+            }
+        }
+    }
+    Display(T,n);
+}
+
 //Rechercher une tâche par son Identifiant.
 int SearchById(ToDo T[], int n, int identifiant){
   int i;
@@ -252,7 +274,7 @@ int main() {
                                     break;
                                     case 2: 
                                     printf("\n Vous avez choisi l'affichage par deadline \n");
-                                    //// fonction tri par deadline
+                                    SortByDeadline(t,n);
                                     break;
                                     case 3:
                                      printf("Vous avez choisi l'affichage par deadline \n");
