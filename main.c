@@ -61,19 +61,12 @@ for(i=0;i<n;i++){
 
 //TO display TODO LIST
 void DisplayList(ToDo T[], int n){
-int i;
-for(i=0;i<n;i++){
-    printf("id: %d  ",T[i].id);
-    printf("Titre: %s  ",T[i].titre);
-    printf("Description: %s  ",T[i].description);
-    // printf("Deadline: %s", T[i].deadline);
-    printf("Status: %s  ",T[i].status);
-// Format and display the deadline
-        char deadlineStr[20]; // Adjust the buffer size as needed
-        strftime(deadlineStr, sizeof(deadlineStr), "%d/%m/%Y", &T[i].deadline);
-        printf("Deadline: %s\n", deadlineStr);
-        printf("\n"); // Add a separator between tasks
-}
+    int i;
+printf("\nListe des Tâches :\n");
+    for ( i = 0; i < n; i++) {
+        printf(" ID: %d  Titre:  %s   Description:  %s  Deadline:  %d/%d/%d  Status:  %s\n", T[i].id, T[i].titre, T[i].description,
+         T[i].deadline.tm_mday,T[i].deadline.tm_mon+1,T[i].deadline.tm_year+1900, T[i].status);
+    }
 }
 
 //Sort alphabetically TODO list (titles)
