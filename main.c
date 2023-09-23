@@ -60,7 +60,7 @@ for(i=0;i<n;i++){
 }
 
 //TO display TODO LIST
-void DisplayList(ToDo T[], int n){
+void Display(ToDo T[], int n){
     int i;
 printf("\nListe des Tâches :\n");
     for ( i = 0; i < n; i++) {
@@ -270,7 +270,7 @@ int main() {
                                     case 1:
                                     printf("\n Vous avez choisi l'affichage de liste apres le triage alphabetique:\n");
                                     ToDoSort(t,n);
-                                    DisplayList(t,n);   
+                                    Display(t,n);   
                                     break;
                                     case 2: 
                                     printf("\n Vous avez choisi l'affichage par deadline \n");
