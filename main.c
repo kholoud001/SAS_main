@@ -107,6 +107,29 @@ void SortByDeadline(ToDo T[], int n) {
     Display(T,n);
 }
 
+//Afficher les tâches dont le deadline est dans 3 jours ou moins.
+void DisplayTasksWithinThreeDays(ToDo T[], int n) {
+    time_t now = time(NULL); // Get the current time in seconds since epoch
+    struct tm* current_time = localtime(&now);
+
+    for (int i = 0; i < n; i++) {
+        time_t deadlineTime = mktime(&T[i].deadline);
+
+        // Calculate the difference in seconds between the current time and deadline
+        double difference = difftime(deadlineTime, now);
+
+        // Convert seconds to days (86400 seconds in a day)
+        int daysDifference = difference / 86400;
+
+        if (daysDifference >= 0 && daysDifference <= 3) {
+            printf("\n task whithin 3 days \n ");
+            printf("Task ID: %d, Title: %s, Description: %s, Status: %s, Deadline: %d/%d/%d\n",
+                T[i].id, T[i].titre, T[i].description, T[i].status,
+                T[i].deadline.tm_mday, T[i].deadline.tm_mon + 1, T[i].deadline.tm_year + 1900);
+        }
+    }
+}
+
 //Rechercher une tâche par son Identifiant.
 int SearchById(ToDo T[], int n, int identifiant){
   int i;
@@ -278,7 +301,7 @@ int main() {
                                     break;
                                     case 3:
                                      printf("Vous avez choisi l'affichage par deadline \n");
-                                    ////////////fonction tri par deadline < 3
+                                    DisplayTasksWithinThreeDays(t,n);
                                     break;
                                     }
                                     break;
